@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobody | Bot Twitch</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --nobody-dark: #222222; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfc; color: var(--nobody-dark); overflow-x: hidden; }
+        .bg-nobody { background-color: var(--nobody-dark); }
+        .text-nobody { color: var(--nobody-dark); }
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
+        .command-card, .team-card { transition: all 0.3s ease; border: 1px solid #f1f1f1; background: white; }
+        .command-card:hover, .team-card:hover { border-color: var(--nobody-dark); transform: translateY(-2px); }
+        .hidden-section { display: none; }
+        .avatar { width: 90px; height: 90px; border-radius: 22px; object-fit: cover; background: #eee; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .custom-badge { width: 28px; height: 28px; object-fit: contain; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 glass border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="showSection('home')">
+                <img src="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png" alt="Logo" class="w-8 h-8 rounded-md">
+                <span class="text-lg font-bold tracking-tighter uppercase">Nobody</span>
+            </div>
+            <div class="hidden md:flex gap-8 items-center font-bold text-[10px] uppercase tracking-widest text-slate-400">
+                <button onclick="showSection('home')" class="hover:text-nobody transition">Accueil</button>
+                <button onclick="showSection('team')" class="hover:text-nobody transition">Équipe</button>
+                <a href="https://discord.gg/bz92EmnDJa" target="_blank" class="bg-nobody text-white px-5 py-2 rounded-full shadow-md">Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="home-section">
+        <header class="pt-40 pb-20 px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="inline-block px-3 py-1 mb-6 text-[9px] font-bold tracking-[0.3em] uppercase bg-slate-100 rounded-full text-slate-500 italic">
+                    Par Lyven
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black mb-6 tracking-tight leading-tight">
+                    Le bot que personne ne voit,<br>
+                    <span class="text-slate-400 font-medium">mais que tout le monde respecte.</span>
+                </h1>
+                <p class="max-w-lg mx-auto text-base text-slate-500 mb-10 leading-relaxed">
+                    Une modération silencieuse et une gestion de communauté ultra-rapide pour vos lives Twitch.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="#" class="bg-nobody text-white px-8 py-4 rounded-xl font-bold shadow-lg transition hover:scale-105">Ajouter à Twitch</a>
+                    <button onclick="document.getElementById('commands-anchor').scrollIntoView()" class="bg-white border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition">Commandes</button>
+                </div>
+            </div>
+        </header>
+
+        <section id="commands-anchor" class="py-20 max-w-4xl mx-auto px-6">
+            <div class="mb-12 border-l-4 border-nobody pl-6">
+                <h2 class="text-2xl font-black tracking-tight uppercase text-nobody">Commandes du bot</h2>
+                <p class="text-slate-400 text-sm mt-1 font-medium">Préfixe : <span class="font-bold text-nobody">!</span></p>
+            </div>
+
+            <div class="grid gap-3">
+                <div class="command-card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold">!</div>
+                        <div>
+                            <h4 class="font-bold italic text-sm">!sondage</h4>
+                            <p class="text-slate-400 text-xs">Créer un sondage interactif pour le chat.</p>
+                        </div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
+                </div>
+                <div class="command-card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold">!</div>
+                        <div>
+                            <h4 class="font-bold italic text-sm">!vote</h4>
+                            <p class="text-slate-400 text-xs italic">Voter pour une option dans le sondage en cours.</p>
+                        </div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="command-card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold">!</div>
+                        <div>
+                            <h4 class="font-bold italic text-sm">!ping</h4>
+                            <p class="text-slate-400 text-xs">Vérifier la latence de Nobody.</p>
+                        </div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="team-section" class="hidden-section pt-40 pb-24 px-6 max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-black uppercase tracking-tight mb-2">L'Équipe</h2>
+            <div class="h-1 w-12 bg-nobody mx-auto mb-4"></div>
+            <p class="text-slate-400 text-sm">Les créateurs derrière le projet.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div class="team-card p-8 rounded-[2.5rem] text-center flex flex-col items-center">
+                <img src="https://api.lanyard.rest/1384898080184340550.png" alt="Lyven" class="avatar mb-6">
+                <h3 class="text-lg font-black mb-1">Lyven <span class="text-slate-300 font-medium text-xs">(lyven.dev)</span></h3>
+                <p class="text-slate-400 text-xs mb-6 font-medium tracking-wide uppercase">Créateur de Nobody</p>
+                <div class="flex gap-2">
+                    <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center">
+                        <img src="https://i.postimg.cc/fyvw60Qc/Design-sans-titre-removebg-preview.png" class="custom-badge" alt="Badge">
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card p-8 rounded-[2.5rem] text-center flex flex-col items-center">
+                <img src="https://api.lanyard.rest/1324013060914151486.png" alt="Loucas" class="avatar mb-6">
+                <h3 class="text-lg font-black mb-1">Loucas <span class="text-slate-300 font-medium text-xs">(louzcas_)</span></h3>
+                <p class="text-slate-400 text-xs mb-6 font-medium tracking-wide uppercase">Co-Fondateur de Nobody</p>
+                <div class="flex gap-2">
+                    <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center">
+                        <img src="https://i.postimg.cc/fyvw60Qc/Design-sans-titre-removebg-preview.png" class="custom-badge" alt="Badge">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-slate-50 text-center">
+        <p class="text-[9px] font-bold text-slate-300 uppercase tracking-[0.3em]">
+            © 2026 Nobody Bot • Développé par <span class="text-nobody">Lyven</span>
+        </p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const home = document.getElementById('home-section');
+            const team = document.getElementById('team-section');
+            
+            if(sectionId === 'home') {
+                home.classList.remove('hidden-section');
+                team.classList.add('hidden-section');
+            } else {
+                home.classList.add('hidden-section');
+                team.classList.remove('hidden-section');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
