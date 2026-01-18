@@ -3,153 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nobody | Bot Twitch</title>
+    <title>Nobody</title>
     <link rel="icon" type="image/png" href="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --nobody-dark: #222222; }
+        :root { 
+            --nobody-dark: #222222; 
+            --manage-color: #7281df;
+            --bump-color: #1667ea;
+        }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfc; color: var(--nobody-dark); overflow-x: hidden; }
         .bg-nobody { background-color: var(--nobody-dark); }
         .text-nobody { color: var(--nobody-dark); }
         .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
-        .command-card, .team-card { transition: all 0.3s ease; border: 1px solid #f1f1f1; background: white; }
-        .command-card:hover, .team-card:hover { border-color: var(--nobody-dark); transform: translateY(-2px); }
-        .hidden-section { display: none; }
+        .card { transition: all 0.3s ease; border: 1px solid #f1f1f1; background: white; }
+        .card:hover { border-color: var(--nobody-dark); transform: translateY(-2px); }
+        .hidden-section { display: none !important; }
         .avatar { width: 90px; height: 90px; border-radius: 22px; object-fit: cover; background: #eee; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .custom-badge { width: 28px; height: 28px; object-fit: contain; }
+        
+        /* Dashboard Styles */
+        .sidebar-link { transition: all 0.2s; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 12px; color: #94a3b8; font-weight: 600; font-size: 13px; text-align: left; width: 100%; }
+        .sidebar-link:hover, .sidebar-link.active { background: #f8fafc; color: var(--nobody-dark); }
+        .stat-card { background: white; border: 1px solid #f1f1f1; padding: 20px; border-radius: 20px; }
+        .partner-manage:hover { border-color: var(--manage-color) !important; }
+        .partner-bump:hover { border-color: var(--bump-color) !important; }
     </style>
 </head>
 <body>
 
-    <nav class="fixed w-full z-50 glass border-b border-slate-100">
+    <nav id="main-nav" class="fixed w-full z-50 glass border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
             <div class="flex items-center gap-2 cursor-pointer" onclick="showSection('home')">
                 <img src="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png" alt="Logo" class="w-8 h-8 rounded-md">
-                <span class="text-lg font-bold tracking-tighter uppercase">Nobody</span>
+                <span class="text-lg font-bold tracking-tighter uppercase text-nobody">Nobody</span>
             </div>
             <div class="hidden md:flex gap-8 items-center font-bold text-[10px] uppercase tracking-widest text-slate-400">
                 <button onclick="showSection('home')" class="hover:text-nobody transition">Accueil</button>
+                <button onclick="showSection('commands')" class="hover:text-nobody transition">Commandes</button>
                 <button onclick="showSection('team')" class="hover:text-nobody transition">Équipe</button>
-                <a href="https://discord.gg/bz92EmnDJa" target="_blank" class="bg-nobody text-white px-5 py-2 rounded-full shadow-md">Support</a>
+                <button onclick="showSection('partners')" class="hover:text-nobody transition">Partenaires</button>
+                <button onclick="openLogin()" class="bg-nobody text-white px-5 py-2 rounded-full shadow-md hover:scale-105 transition">Dashboard</button>
             </div>
         </div>
     </nav>
 
-    <main id="home-section">
-        <header class="pt-40 pb-20 px-6 text-center">
-            <div class="max-w-3xl mx-auto">
-                <div class="inline-block px-3 py-1 mb-6 text-[9px] font-bold tracking-[0.3em] uppercase bg-slate-100 rounded-full text-slate-500 italic">
-                    Par Lyven
+    <div id="vitrine-content">
+        <main id="home-section">
+            <header class="pt-40 pb-20 px-6 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <div class="inline-block px-3 py-1 mb-6 text-[9px] font-bold tracking-[0.3em] uppercase bg-slate-100 rounded-full text-slate-500 italic">Nobody</div>
+                    <h1 class="text-4xl md:text-5xl font-black mb-6 tracking-tight leading-tight text-nobody">
+                        Le bot que personne ne voit,<br>
+                        <span class="text-slate-400 font-medium">mais que tout le monde respecte.</span>
+                    </h1>
+                    <p class="max-w-lg mx-auto text-base text-slate-500 mb-10 leading-relaxed">
+                        Une modération silencieuse et une gestion de communauté ultra-rapide pour vos lives Twitch.
+                    </p>
+                    <div class="flex justify-center gap-4">
+                        <button onclick="openLogin()" class="bg-nobody text-white px-8 py-4 rounded-xl font-bold shadow-lg transition hover:scale-105">Ajouter à Twitch</button>
+                        <button onclick="showSection('commands')" class="bg-white border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition">Commandes</button>
+                    </div>
                 </div>
-                <h1 class="text-4xl md:text-5xl font-black mb-6 tracking-tight leading-tight">
-                    Le bot que personne ne voit,<br>
-                    <span class="text-slate-400 font-medium">mais que tout le monde respecte.</span>
-                </h1>
-                <p class="max-w-lg mx-auto text-base text-slate-500 mb-10 leading-relaxed">
-                    Une modération silencieuse et une gestion de communauté ultra-rapide pour vos lives Twitch.
-                </p>
-                <div class="flex justify-center gap-4">
-                    <a href="#" class="bg-nobody text-white px-8 py-4 rounded-xl font-bold shadow-lg transition hover:scale-105">Ajouter à Twitch</a>
-                    <button onclick="document.getElementById('commands-anchor').scrollIntoView()" class="bg-white border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition">Commandes</button>
+            </header>
+            <section class="py-10 max-w-4xl mx-auto px-6 text-center">
+                <div class="p-8 bg-slate-50 rounded-3xl border border-dashed border-slate-200">
+                    <p class="text-slate-400 font-medium italic">Retrouvez toutes les commandes du bot dans la catégorie <span class="text-nobody font-bold cursor-pointer underline" onclick="showSection('commands')">Commandes</span>.</p>
+                </div>
+            </section>
+        </main>
+
+        <main id="commands-section" class="hidden-section pt-40 pb-24 px-6 max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black uppercase tracking-tight mb-2 text-nobody">Commandes</h2>
+                <div class="h-1 w-12 bg-nobody mx-auto mb-4"></div>
+                <p class="text-slate-400 text-sm italic">Préfixe Twitch : ! | Préfixe Discord : /</p>
+            </div>
+            <div class="mb-12">
+                <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-300 mb-6 flex items-center gap-4">Commandes Twitch <div class="h-px bg-slate-100 flex-1"></div></h3>
+                <div class="grid gap-3">
+                    <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold italic">!</div>
+                            <div><h4 class="font-bold italic text-sm text-nobody">!sondage</h4><p class="text-slate-400 text-xs">Créer un sondage interactif.</p></div>
+                        </div>
+                        <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
+                    </div>
+                    <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic">!</div>
+                            <div><h4 class="font-bold italic text-sm text-nobody">!vote</h4><p class="text-slate-400 text-xs italic">Répondre au sondage en cours.</p></div>
+                        </div>
+                        <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                    </div>
+                    <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic">!</div>
+                            <div><h4 class="font-bold italic text-sm text-nobody">!help</h4><p class="text-slate-400 text-xs">Liste des commandes.</p></div>
+                        </div>
+                        <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                    </div>
+                    <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic">!</div>
+                            <div><h4 class="font-bold italic text-sm text-nobody">!ping</h4><p class="text-slate-400 text-xs">Vérifie la latence.</p></div>
+                        </div>
+                        <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                    </div>
                 </div>
             </div>
-        </header>
-
-        <section id="commands-anchor" class="py-20 max-w-4xl mx-auto px-6">
-            <div class="mb-12 border-l-4 border-nobody pl-6">
-                <h2 class="text-2xl font-black tracking-tight uppercase text-nobody">Commandes du bot</h2>
-                <p class="text-slate-400 text-sm mt-1 font-medium">Préfixe : <span class="font-bold text-nobody">!</span></p>
-            </div>
-
-            <div class="grid gap-3">
-                <div class="command-card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+            <div>
+                <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-300 mb-6 flex items-center gap-4">Commandes Discord <div class="h-px bg-slate-100 flex-1"></div></h3>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm border-l-4 border-l-indigo-500">
                     <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold">!</div>
-                        <div>
-                            <h4 class="font-bold italic text-sm">!sondage</h4>
-                            <p class="text-slate-400 text-xs">Créer un sondage interactif pour le chat.</p>
-                        </div>
+                        <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-lg flex items-center justify-center font-bold italic">/</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">/setlogs</h4><p class="text-slate-400 text-xs italic">Choisir le salon des logs Twitch sur Discord.</p></div>
                     </div>
-                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
-                </div>
-                <div class="command-card p-5 rounded-2xl flex items-center justify-between shadow-sm">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold">!</div>
-                        <div>
-                            <h4 class="font-bold italic text-sm">!vote</h4>
-                            <p class="text-slate-400 text-xs italic">Voter pour une option dans le sondage en cours.</p>
-                        </div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
-                </div>
-                <div class="command-card p-5 rounded-2xl flex items-center justify-between shadow-sm">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold">!</div>
-                        <div>
-                            <h4 class="font-bold italic text-sm">!ping</h4>
-                            <p class="text-slate-400 text-xs">Vérifier la latence de Nobody.</p>
-                        </div>
-                    </div>
-                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-indigo-50 text-indigo-600 rounded">Admin</span>
                 </div>
             </div>
-        </section>
-    </main>
+        </main>
 
-    <main id="team-section" class="hidden-section pt-40 pb-24 px-6 max-w-5xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-black uppercase tracking-tight mb-2">L'Équipe</h2>
-            <div class="h-1 w-12 bg-nobody mx-auto mb-4"></div>
-            <p class="text-slate-400 text-sm">Les créateurs derrière le projet.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <div class="team-card p-8 rounded-[2.5rem] text-center flex flex-col items-center">
-                <img src="https://api.lanyard.rest/1384898080184340550.png" alt="Lyven" class="avatar mb-6">
-                <h3 class="text-lg font-black mb-1">Lyven <span class="text-slate-300 font-medium text-xs">(lyven.dev)</span></h3>
-                <p class="text-slate-400 text-xs mb-6 font-medium tracking-wide uppercase">Créateur de Nobody</p>
-                <div class="flex gap-2">
+        <main id="team-section" class="hidden-section pt-40 pb-24 px-6 max-w-5xl mx-auto">
+            <div class="text-center mb-16"><h2 class="text-3xl font-black uppercase tracking-tight mb-2 text-nobody">L'Équipe</h2><div class="h-1 w-12 bg-nobody mx-auto mb-4"></div></div>
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <div class="card p-8 rounded-[2.5rem] text-center flex flex-col items-center">
+                    <img src="https://api.lanyard.rest/1384898080184340550.png" class="avatar mb-6">
+                    <h3 class="text-lg font-black mb-1 text-nobody">Lyven <span class="text-slate-300 font-medium text-xs">(lyven.dev)</span></h3>
+                    <p class="text-slate-400 text-xs mb-6 font-medium tracking-wide uppercase">Créateur</p>
                     <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center">
-                        <img src="https://i.postimg.cc/fyvw60Qc/Design-sans-titre-removebg-preview.png" class="custom-badge" alt="Badge">
+                        <img src="https://i.postimg.cc/fyvw60Qc/Design-sans-titre-removebg-preview.png" class="custom-badge">
+                    </div>
+                </div>
+                <div class="card p-8 rounded-[2.5rem] text-center flex flex-col items-center">
+                    <img src="https://api.lanyard.rest/1324013060914151486.png" class="avatar mb-6">
+                    <h3 class="text-lg font-black mb-1 text-nobody">Loucas <span class="text-slate-300 font-medium text-xs">(louzcas_)</span></h3>
+                    <p class="text-slate-400 text-xs mb-6 font-medium tracking-wide uppercase">Co-Fondateur</p>
+                    <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center">
+                        <img src="https://i.postimg.cc/fyvw60Qc/Design-sans-titre-removebg-preview.png" class="custom-badge">
                     </div>
                 </div>
             </div>
+        </main>
 
-            <div class="team-card p-8 rounded-[2.5rem] text-center flex flex-col items-center">
-                <img src="https://api.lanyard.rest/1324013060914151486.png" alt="Loucas" class="avatar mb-6">
-                <h3 class="text-lg font-black mb-1">Loucas <span class="text-slate-300 font-medium text-xs">(louzcas_)</span></h3>
-                <p class="text-slate-400 text-xs mb-6 font-medium tracking-wide uppercase">Co-Fondateur de Nobody</p>
-                <div class="flex gap-2">
-                    <div class="p-2 bg-slate-50 rounded-xl border border-slate-100 flex items-center justify-center">
-                        <img src="https://i.postimg.cc/fyvw60Qc/Design-sans-titre-removebg-preview.png" class="custom-badge" alt="Badge">
-                    </div>
+        <main id="partners-section" class="hidden-section pt-40 pb-24 px-6 max-w-5xl mx-auto">
+            <div class="text-center mb-16"><h2 class="text-3xl font-black uppercase tracking-tight mb-2 text-nobody">Partenaires</h2><div class="h-1 w-12 bg-nobody mx-auto mb-4"></div></div>
+            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <a href="https://manage-bot.fr" target="_blank" class="card partner-manage p-8 rounded-[2.5rem] text-center flex flex-col items-center block hover:no-underline transition-all">
+                    <img src="https://i.postimg.cc/sXYQgxRr/Manage-test.png" class="w-20 h-20 mb-6 object-contain">
+                    <h3 class="text-lg font-black mb-1 text-nobody">Manage Bot</h3>
+                    <p class="text-slate-500 text-sm mb-6">Affilié Officiel</p>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-white bg-[#7281df] px-6 py-3 rounded-full">Visiter</span>
+                </a>
+                <div class="card partner-bump p-8 rounded-[2.5rem] text-center flex flex-col items-center">
+                    <img src="https://i.postimg.cc/nc3JtJNr/Design-sans-titre-(1).png" class="w-20 h-20 mb-6 object-contain">
+                    <h3 class="text-lg font-black mb-1 text-nobody">Bump Host</h3>
+                    <p class="text-slate-500 text-sm mb-6">Hébergeur Officiel</p>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-white bg-[#1667ea] px-6 py-3 rounded-full opacity-60">Hébergeur Privé</span>
                 </div>
+            </div>
+        </main>
+
+        <footer class="py-12 border-t border-slate-50 text-center">
+            <p class="text-[9px] font-bold text-slate-300 uppercase tracking-[0.3em]">© 2026 Nobody Bot • Développé par Lyven</p>
+        </footer>
+    </div>
+
+    <div id="login-page" class="hidden-section fixed inset-0 z-[100] bg-white flex items-center justify-center px-6">
+        <div class="max-w-md w-full">
+            <div class="text-center mb-10">
+                <img src="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png" class="w-16 h-16 mx-auto mb-4 rounded-2xl">
+                <h2 class="text-2xl font-black uppercase tracking-tight">Connexion</h2>
+                <p class="text-slate-400 text-sm">Accédez à votre espace de gestion</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-[10px] font-bold uppercase text-slate-400 ml-1">Email</label>
+                    <input type="email" id="login-email" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:border-nobody transition">
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase text-slate-400 ml-1">Mot de passe</label>
+                    <input type="password" id="login-password" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:border-nobody transition">
+                </div>
+                <p id="login-error" class="text-red-500 text-xs font-bold text-center hidden">Identifiants incorrects.</p>
+                <button onclick="handleLogin()" class="w-full bg-nobody text-white py-4 rounded-xl font-bold shadow-lg hover:scale-[1.02] transition">Se connecter</button>
+                <button onclick="closeLogin()" class="w-full text-slate-400 text-xs font-bold uppercase tracking-widest py-2">Retour</button>
             </div>
         </div>
-    </main>
+    </div>
 
-    <footer class="py-12 border-t border-slate-50 text-center">
-        <p class="text-[9px] font-bold text-slate-300 uppercase tracking-[0.3em]">
-            © 2026 Nobody Bot • Développé par <span class="text-nobody">Lyven</span>
-        </p>
-    </footer>
+    <div id="dashboard-content" class="hidden-section flex h-screen bg-[#fcfcfc]">
+        <aside class="w-64 border-r bg-white p-6 flex flex-col">
+            <div class="flex items-center gap-3 mb-10 px-2 cursor-pointer" onclick="exitDashboard()">
+                <img src="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png" class="w-8 h-8 rounded-lg">
+                <span class="font-bold uppercase text-xs tracking-tighter">Nobody Dash</span>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <div class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-4 px-2">Menu Principal</div>
+                <button onclick="switchDashTab('dash-home')" class="sidebar-link active" id="btn-dash-home">Accueil</button>
+                <button onclick="switchDashTab('dash-stats')" class="sidebar-link" id="btn-dash-stats">Stats</button>
+                
+                <div class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-4 mt-8 px-2">Configuration</div>
+                <button onclick="switchDashTab('dash-poll')" class="sidebar-link" id="btn-dash-poll">Sondages</button>
+
+                <div id="owner-nav" class="hidden-section">
+                    <div class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-4 mt-8 px-2">Owner Nobody</div>
+                    <button onclick="switchDashTab('dash-admin')" class="sidebar-link border border-red-50 text-red-500 font-bold" id="btn-dash-admin">Stats Globales Bot</button>
+                </div>
+            </nav>
+            <button onclick="logout()" class="mt-auto sidebar-link text-red-400 hover:text-red-500">Déconnexion</button>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-10">
+            <header class="flex justify-between items-center mb-10">
+                <div>
+                    <h2 id="dash-title" class="text-2xl font-black tracking-tight text-nobody">Bienvenue, <span id="user-name">Streamer</span></h2>
+                    <p class="text-slate-400 text-sm italic">Espace personnel Nobody</p>
+                </div>
+                <div class="flex items-center gap-4 bg-white p-2 pr-6 rounded-2xl border shadow-sm">
+                    <img id="user-avatar" src="https://api.lanyard.rest/1384898080184340550.png" class="w-10 h-10 rounded-xl">
+                    <div><p class="text-xs font-bold uppercase" id="user-display">User</p><p class="text-[9px] text-green-500 font-bold italic">● En ligne</p></div>
+                </div>
+            </header>
+
+            <div id="dash-home" class="dash-tab">
+                <div class="grid grid-cols-3 gap-6 mb-10">
+                    <div class="stat-card"><p class="text-slate-400 text-[10px] font-bold uppercase mb-2">Viewers Actuels</p><h3 class="text-3xl font-black tracking-tighter">1,284</h3></div>
+                    <div class="stat-card"><p class="text-slate-400 text-[10px] font-bold uppercase mb-2">Follows (24h)</p><h3 class="text-3xl font-black tracking-tighter text-indigo-500">+42</h3></div>
+                    <div class="stat-card"><p class="text-slate-400 text-[10px] font-bold uppercase mb-2">Status Stream</p><h3 class="text-3xl font-black tracking-tighter text-green-500">LIVE</h3></div>
+                </div>
+                <div class="stat-card max-w-md">
+                    <h4 class="font-bold mb-4 text-sm uppercase tracking-wide">Modérateurs en ligne</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3"><div class="w-8 h-8 bg-slate-100 rounded-lg"></div><p class="text-sm font-medium">Loucas</p></div>
+                        <div class="flex items-center gap-3"><div class="w-8 h-8 bg-slate-100 rounded-lg"></div><p class="text-sm font-medium italic text-slate-400">Nobody Bot (Système)</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dash-stats" class="dash-tab hidden-section">
+                <div class="stat-card h-64 border-dashed flex items-center justify-center"><p class="text-slate-400 italic">Graphiques de performance bientôt disponibles...</p></div>
+            </div>
+
+            <div id="dash-poll" class="dash-tab hidden-section">
+                <div class="stat-card max-w-lg">
+                    <h4 class="font-bold mb-6">Créer un sondage Twitch</h4>
+                    <div class="space-y-4">
+                        <input type="text" placeholder="Question..." class="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl text-sm outline-none focus:border-nobody">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="Option A" class="p-3 bg-slate-50 border border-slate-100 rounded-xl text-sm outline-none">
+                            <input type="text" placeholder="Option B" class="p-3 bg-slate-50 border border-slate-100 rounded-xl text-sm outline-none">
+                        </div>
+                        <button class="w-full bg-nobody text-white py-4 rounded-xl font-bold shadow-md hover:opacity-90 transition">Envoyer sur le live</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dash-admin" class="dash-tab hidden-section">
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="stat-card border-red-100 bg-red-50/20">
+                        <h4 class="text-red-500 font-black uppercase text-xs mb-4">État Global du Bot</h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between border-b pb-2"><p class="text-sm font-medium">Total Serveurs Discord</p><p class="font-bold">142</p></div>
+                            <div class="flex justify-between border-b pb-2"><p class="text-sm font-medium">Total Chaines Twitch</p><p class="font-bold">89</p></div>
+                            <div class="flex justify-between border-b pb-2"><p class="text-sm font-medium">Commandes exécutées (24h)</p><p class="font-bold">12,402</p></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h4 class="font-black uppercase text-xs mb-4 italic text-nobody">Lives Actuels sous Nobody</h4>
+                        <div class="text-xs space-y-2">
+                            <p class="p-2 bg-slate-50 rounded">● Gotaga (12k viewers)</p>
+                            <p class="p-2 bg-slate-50 rounded">● Kamet0 (25k viewers)</p>
+                            <p class="p-2 bg-slate-50 rounded">● Lyven (Développement)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <script>
+        // DONNÉES COMPTES FICTIFS
+        const accounts = [
+            { name: "Lyven", email: "lyven@nobody-bot.fr", pass: "Lyven@@@", avatar: "https://api.lanyard.rest/1384898080184340550.png", owner: true },
+            { name: "Loucas", email: "loucas@nobody-bot.fr", pass: "Loucas@@@", avatar: "https://api.lanyard.rest/1324013060914151486.png", owner: true }
+        ];
+
+        // NAVIGATION VITRINE
         function showSection(sectionId) {
-            const home = document.getElementById('home-section');
-            const team = document.getElementById('team-section');
-            
-            if(sectionId === 'home') {
-                home.classList.remove('hidden-section');
-                team.classList.add('hidden-section');
-            } else {
-                home.classList.add('hidden-section');
-                team.classList.remove('hidden-section');
-            }
+            ['home', 'commands', 'team', 'partners'].forEach(id => {
+                const el = document.getElementById(id + '-section');
+                if(el) el.classList.add('hidden-section');
+            });
+            document.getElementById(sectionId + '-section').classList.remove('hidden-section');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-    </script>
 
+        // LOGIN SYSTEM
+        function openLogin() {
+            document.getElementById('login-page').classList.remove('hidden-section');
+        }
+        function closeLogin() {
+            document.getElementById('login-page').classList.add('hidden-section');
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            const error = document.getElementById('login-error');
+
+            const user = accounts.find(a => a.email === email && a.pass === pass);
+
+            if (user) {
+                error.classList.add('hidden');
+                initDashboard(user);
+            } else {
+                error.classList.remove('hidden');
+            }
+        }
+
+        function initDashboard(user) {
+            document.getElementById('login-page').classList.add('hidden-section');
+            document.getElementById('vitrine-content').classList.add('hidden-section');
+            document.getElementById('main-nav').classList.add('hidden-section');
+            document.getElementById('dashboard-content').classList.remove('hidden-section');
+
+            // Set user info
+            document.getElementById('user-name').innerText = user.name;
+            document.getElementById('user-display').innerText = user.name;
+            document.getElementById('user-avatar').src = user.avatar;
+
+            // Show owner section if authorized
+            if (user.owner) {
+                document.getElementById('owner-nav').classList.remove('hidden-section');
+            } else {
+                document.getElementById('owner-nav').classList.add('hidden-section');
+            }
+        }
+
+        function logout() {
+            document.getElementById('dashboard-content').classList.add('hidden-section');
+            document.getElementById('vitrine-content').classList.remove('hidden-section');
+            document.getElementById('main-nav').classList.remove('hidden-section');
+            document.getElementById('login-email').value = "";
+            document.getElementById('login-password').value = "";
+            showSection('home');
+        }
+
+        function exitDashboard() {
+            logout();
+        }
+
+        function switchDashTab(tabId) {
+            document.querySelectorAll('.dash-tab').forEach(t => t.classList.add('hidden-section'));
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            document.getElementById(tabId).classList.remove('hidden-section');
+            document.getElementById('btn-' + tabId).classList.add('active');
+            
+            const titles = { 'dash-home': 'Bienvenue, Streamer', 'dash-stats': 'Statistiques', 'dash-poll': 'Sondages', 'dash-admin': 'Administration Globale' };
+            document.getElementById('dash-title').innerText = titles[tabId];
+        }
+    </script>
 </body>
 </html>
