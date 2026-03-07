@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobody Bot — Légal</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tab-btn { transition: all 0.2s; padding: 10px 24px; border-radius: 50px; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; }
+        .tab-btn.active { background: #222222; color: white; }
+        .tab-btn:not(.active) { color: #94a3b8; }
+        .tab-btn:not(.active):hover { color: #222222; background: #f1f5f9; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .legal-section h2 { font-size: 1.1rem; font-weight: 800; color: #222; margin-bottom: 0.5rem; margin-top: 2rem; }
+        .legal-section h2:first-child { margin-top: 0; }
+        .legal-section p { color: #64748b; font-size: 0.875rem; line-height: 1.75; margin-bottom: 0.75rem; }
+        .legal-section ul { list-style: disc; padding-left: 1.5rem; color: #64748b; font-size: 0.875rem; line-height: 1.75; margin-bottom: 0.75rem; }
+        .legal-section li { margin-bottom: 0.25rem; }
+        .highlight-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px 20px; margin: 1rem 0; }
+        .highlight-box p { margin: 0; color: #475569; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <div class="pt-32 pb-24 px-6 max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+            <div class="inline-block px-3 py-1 mb-4 text-[9px] font-bold tracking-[0.3em] uppercase bg-slate-100 rounded-full text-slate-500">Documents Légaux</div>
+            <h1 class="text-3xl font-black uppercase tracking-tight mb-2 text-nobody">Informations Légales</h1>
+            <div class="h-1 w-12 bg-slate-800 mx-auto mb-4"></div>
+            <p class="text-slate-400 text-sm">Dernière mise à jour : Janvier 2026</p>
+        </div>
+
+        <div class="flex justify-center gap-2 mb-10 flex-wrap">
+            <button class="tab-btn active" onclick="switchTab('tos')" id="btn-tos">CGU</button>
+            <button class="tab-btn" onclick="switchTab('terms')" id="btn-terms">Conditions d'utilisation</button>
+            <button class="tab-btn" onclick="switchTab('privacy')" id="btn-privacy">Politique de confidentialité</button>
+        </div>
+
+        <!-- CGU -->
+        <div id="tab-tos" class="tab-content active">
+            <div class="bg-white border border-slate-100 rounded-[2rem] p-8 shadow-sm legal-section">
+                <h2>1. Présentation du service</h2>
+                <p>Nobody Bot est un bot de modération et de gestion de communauté destiné aux streamers Twitch. Il est développé et maintenu par Lyven et l'équipe Nobody.</p>
+                <h2>2. Acceptation des CGU</h2>
+                <p>En ajoutant Nobody Bot à votre chaîne Twitch ou en accédant au tableau de bord, vous acceptez sans réserve les présentes Conditions Générales d'Utilisation.</p>
+                <h2>3. Accès au service</h2>
+                <p>L'accès à Nobody Bot est réservé aux utilisateurs disposant d'un compte Twitch valide. L'équipe Nobody se réserve le droit de suspendre ou de mettre fin à l'accès de tout utilisateur en cas de violation des présentes CGU.</p>
+                <h2>4. Utilisation autorisée</h2>
+                <p>Vous vous engagez à utiliser Nobody Bot uniquement dans le cadre légal et dans le respect des conditions d'utilisation de Twitch. Il est interdit de :</p>
+                <ul>
+                    <li>Utiliser le bot à des fins malveillantes, de spam, ou de harcèlement</li>
+                    <li>Tenter de contourner les restrictions ou d'accéder aux systèmes sans autorisation</li>
+                    <li>Reproduire, copier ou revendre le service sans autorisation écrite</li>
+                    <li>Utiliser le bot pour diffuser du contenu illégal ou contraire aux règles de Twitch</li>
+                </ul>
+                <h2>5. Responsabilité</h2>
+                <p>Nobody Bot est fourni "tel quel", sans garantie d'aucune sorte. L'équipe Nobody ne saurait être tenue responsable des dommages liés à l'utilisation ou à l'impossibilité d'utiliser le service.</p>
+                <h2>6. Modifications</h2>
+                <p>L'équipe Nobody se réserve le droit de modifier les présentes CGU à tout moment. La poursuite de l'utilisation du service après modification vaut acceptation des nouvelles CGU.</p>
+                <h2>7. Droit applicable</h2>
+                <p>Les présentes CGU sont soumises au droit français. Tout litige relève de la compétence des tribunaux français.</p>
+                <div class="highlight-box"><p>📌 Pour toute question, contactez l'équipe via le serveur Discord officiel de Nobody Bot.</p></div>
+            </div>
+        </div>
+
+        <!-- CONDITIONS -->
+        <div id="tab-terms" class="tab-content">
+            <div class="bg-white border border-slate-100 rounded-[2rem] p-8 shadow-sm legal-section">
+                <h2>1. Conditions d'accès</h2>
+                <p>L'utilisation de Nobody Bot est soumise à la création d'un compte sur la plateforme Twitch. Le service est accessible gratuitement dans sa version standard.</p>
+                <h2>2. Fonctionnalités</h2>
+                <p>Nobody Bot propose les fonctionnalités suivantes :</p>
+                <ul>
+                    <li>Modération automatique du chat Twitch</li>
+                    <li>Système d'économie virtuelle (coins, niveaux, XP)</li>
+                    <li>Gestion de sondages interactifs</li>
+                    <li>Commandes personnalisées pour votre communauté</li>
+                    <li>Logs et intégration Discord via <code class="bg-slate-100 px-1 rounded text-xs">/setlogs</code></li>
+                    <li>Commandes utilitaires (uptime, shoutout, ping...)</li>
+                </ul>
+                <h2>3. Données d'utilisation</h2>
+                <p>L'utilisation du bot implique la collecte de données techniques liées à votre activité sur Twitch. Ces données sont utilisées uniquement pour faire fonctionner le service et ne sont pas revendues à des tiers.</p>
+                <h2>4. Disponibilité du service</h2>
+                <p>Nobody Bot est hébergé par Bump Host. L'équipe s'efforce d'assurer une disponibilité maximale, mais ne peut garantir un service sans interruption.</p>
+                <h2>5. Comportement attendu</h2>
+                <ul>
+                    <li>Ne pas configurer le bot pour cibler, harceler ou discriminer des utilisateurs</li>
+                    <li>Respecter les règles de la communauté Twitch</li>
+                    <li>Signaler tout dysfonctionnement à l'équipe Nobody</li>
+                    <li>Ne pas partager ses identifiants de connexion au dashboard</li>
+                </ul>
+                <h2>6. Sanctions</h2>
+                <p>Tout abus constaté peut entraîner la suspension immédiate de l'accès à Nobody Bot, sans notification préalable.</p>
+                <div class="highlight-box"><p>⚙️ En cas de problème technique, merci de fournir un maximum de détails pour faciliter le débogage.</p></div>
+            </div>
+        </div>
+
+        <!-- CONFIDENTIALITÉ -->
+        <div id="tab-privacy" class="tab-content">
+            <div class="bg-white border border-slate-100 rounded-[2rem] p-8 shadow-sm legal-section">
+                <h2>1. Responsable du traitement</h2>
+                <p>Le responsable du traitement des données est Lyven, créateur de Nobody Bot. Pour exercer vos droits, contactez-nous via le serveur Discord officiel.</p>
+                <h2>2. Données collectées</h2>
+                <ul>
+                    <li><strong>Identifiants Twitch</strong> : nom d'utilisateur, ID de chaîne</li>
+                    <li><strong>Données d'activité</strong> : commandes utilisées, votes, coins et XP accumulés</li>
+                    <li><strong>Données techniques</strong> : logs de connexion, erreurs système</li>
+                    <li><strong>Données Discord</strong> : ID de serveur et salon pour la fonction <code class="bg-slate-100 px-1 rounded text-xs">/setlogs</code></li>
+                </ul>
+                <h2>3. Données NON collectées</h2>
+                <ul>
+                    <li>Vos mots de passe Twitch ou Discord</li>
+                    <li>Vos informations bancaires ou de paiement</li>
+                    <li>Des données personnelles sensibles (adresse, téléphone...)</li>
+                    <li>Le contenu de vos messages privés</li>
+                </ul>
+                <h2>4. Utilisation des données</h2>
+                <p>Les données collectées sont utilisées exclusivement pour faire fonctionner le service, afficher les statistiques, améliorer la qualité et détecter les abus.</p>
+                <h2>5. Conservation des données</h2>
+                <p>Les données sont conservées tant que le bot est actif sur votre chaîne. En cas de retrait, vos données sont supprimées dans un délai de 30 jours sur simple demande.</p>
+                <h2>6. Partage des données</h2>
+                <p>Vos données ne sont jamais vendues ni partagées avec des tiers à des fins commerciales.</p>
+                <h2>7. Vos droits (RGPD)</h2>
+                <ul>
+                    <li><strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
+                    <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+                    <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+                    <li><strong>Droit d'opposition</strong> : vous opposer au traitement</li>
+                    <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format lisible</li>
+                </ul>
+                <h2>8. Sécurité</h2>
+                <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données.</p>
+                <div class="highlight-box"><p>🔒 Vos données sont stockées sur des serveurs sécurisés en France, hébergés par Bump Host.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/nav.js"></script>
+    <script>
+        renderNav('legal.html');
+        renderFooter();
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        const hash = window.location.hash.replace('#', '');
+        if (['tos', 'terms', 'privacy'].includes(hash)) switchTab(hash);
+    </script>
+</body>
+</html>

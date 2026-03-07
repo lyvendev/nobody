@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nobody Bot — Commandes</title>
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/cJcdbn7C/Nobody-V2.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .card { transition: all 0.3s ease; border: 1px solid #f1f1f1; background: white; }
+        .card:hover { border-color: #222; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <main class="pt-40 pb-24 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-black uppercase tracking-tight mb-2 text-nobody">Commandes</h2>
+            <div class="h-1 w-12 bg-nobody mx-auto mb-4"></div>
+            <p class="text-slate-400 text-sm italic">Préfixe Twitch : ! &nbsp;|&nbsp; Préfixe Discord : /</p>
+        </div>
+
+        <!-- ÉCONOMIE -->
+        <div class="mb-12">
+            <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-300 mb-6 flex items-center gap-4">
+                💰 Économie <div class="h-px bg-slate-100 flex-1"></div>
+            </h3>
+            <div class="grid gap-3">
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!coins</h4><p class="text-slate-400 text-xs">Voir son solde.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!daily</h4><p class="text-slate-400 text-xs">Récupérer sa récompense journalière.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!work</h4><p class="text-slate-400 text-xs">Travailler pour gagner des coins.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!gamble &lt;montant|all&gt;</h4><p class="text-slate-400 text-xs">Parier ses coins.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!give @pseudo montant</h4><p class="text-slate-400 text-xs">Donner des coins à quelqu'un.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!top</h4><p class="text-slate-400 text-xs">Voir le top 5 des plus riches.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- NIVEAUX -->
+        <div class="mb-12">
+            <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-300 mb-6 flex items-center gap-4">
+                ⭐ Niveaux <div class="h-px bg-slate-100 flex-1"></div>
+            </h3>
+            <div class="grid gap-3">
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!level</h4><p class="text-slate-400 text-xs">Voir son niveau et XP.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!toplevel</h4><p class="text-slate-400 text-xs">Voir le top 5 des niveaux.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SONDAGES -->
+        <div class="mb-12">
+            <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-300 mb-6 flex items-center gap-4">
+                📊 Sondages <div class="h-px bg-slate-100 flex-1"></div>
+            </h3>
+            <div class="grid gap-3">
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!poll "Question?" "Option1" "Option2" [durée]</h4><p class="text-slate-400 text-xs">Créer un sondage interactif.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!vote &lt;numéro&gt;</h4><p class="text-slate-400 text-xs">Voter dans un sondage en cours.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!endpoll</h4><p class="text-slate-400 text-xs">Terminer le sondage en cours.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GESTION COMMANDES -->
+        <div class="mb-12">
+            <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-300 mb-6 flex items-center gap-4">
+                ⚙️ Gestion des commandes <div class="h-px bg-slate-100 flex-1"></div>
+            </h3>
+            <div class="grid gap-3">
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!commands</h4><p class="text-slate-400 text-xs">Voir toutes les commandes personnalisées.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!addcmd &lt;nom&gt; &lt;réponse&gt;</h4><p class="text-slate-400 text-xs">Ajouter ou modifier une commande.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!delcmd &lt;nom&gt;</h4><p class="text-slate-400 text-xs">Supprimer une commande.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- UTILITAIRES -->
+        <div class="mb-12">
+            <h3 class="text-sm font-black uppercase tracking-[0.2em] text-slate-300 mb-6 flex items-center gap-4">
+                🔧 Utilitaires <div class="h-px bg-slate-100 flex-1"></div>
+            </h3>
+            <div class="grid gap-3">
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!help</h4><p class="text-slate-400 text-xs">Liste des commandes.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!ping</h4><p class="text-slate-400 text-xs">Vérifie la latence.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!so @pseudo</h4><p class="text-slate-400 text-xs">Shoutout un streamer.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-red-50 text-red-600 rounded">Modo</span>
+                </div>
+                <div class="card p-5 rounded-2xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-slate-50 text-nobody rounded-lg flex items-center justify-center font-bold italic text-sm">!</div>
+                        <div><h4 class="font-bold italic text-sm text-nobody">!uptime</h4><p class="text-slate-400 text-xs">Voir l'uptime du stream.</p></div>
+                    </div>
+                    <span class="text-[9px] font-bold uppercase px-2 py-1 bg-green-50 text-green-600 rounded">Public</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/nav.js"></script>
+    <script>renderNav('commandes.html'); renderFooter();</script>
+</body>
+</html>
