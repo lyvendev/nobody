@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+
+:root {
+    --nobody-dark: #222222;
+    --manage-color: #7281df;
+    --bump-color: #1667ea;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #fcfcfc;
+    color: var(--nobody-dark);
+    overflow-x: hidden;
+}
+
+.bg-nobody { background-color: var(--nobody-dark); }
+.text-nobody { color: var(--nobody-dark); }
+.glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); }
+
+.card {
+    transition: all 0.3s ease;
+    border: 1px solid #f1f1f1;
+    background: white;
+}
+.card:hover {
+    border-color: var(--nobody-dark);
+    transform: translateY(-2px);
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 22px;
+    object-fit: cover;
+    background: #eee;
+    border: 3px solid white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.custom-badge {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.partner-manage:hover { border-color: var(--manage-color) !important; }
+.partner-bump:hover { border-color: var(--bump-color) !important; }
+
+/* Nav active link */
+nav a.nav-active, nav button.nav-active {
+    color: var(--nobody-dark) !important;
+}
